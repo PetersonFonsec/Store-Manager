@@ -17,8 +17,8 @@
 
 <script>
   import  '@/css/animate.css'
-  import Menu from '@/components/menu'
-  import particleBG from '@/components/backGroundParticle'
+  import Menu from '@/components/template/Menu/menu'
+  import particleBG from '@/components/template/Menu/backGroundParticle'
   import btnFlutuante from '@/components/template/botao_Flutuante'
 
   export default {

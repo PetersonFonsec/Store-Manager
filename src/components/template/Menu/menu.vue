@@ -3,7 +3,7 @@
         <div id="logo">
             <img  src="@/assets/logo.png" alt="logoTipo">
             <h1> {{ titulo }} </h1>
-        </div>
+        </div> 
 
         <div id="menu-btn-group">
             <router-link tag="button" to="/Vendas">Venda</router-link>

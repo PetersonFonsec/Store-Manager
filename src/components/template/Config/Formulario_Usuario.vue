@@ -73,7 +73,7 @@
             </v-flex>
 
             <v-flex xs6 sm4 md3 class="text-xs-center">
-                <v-btn color="success">Salvar</v-btn>
+                <v-btn color="success" @click="salvar"> Salvar</v-btn>
             </v-flex>
 
         </v-layout>
@@ -85,24 +85,24 @@
         data(){
             return {
                 valid: false,
-                usuario : {
-                    nome : '',
-                    sobrenome : '',
-                    rg:'',
-                    cpf:'',
-                    dataNacimento: '',
-                    email:'',
-                    celular: '',
-                    telefone: ''
+                usuario:{
+                    sobrenome : this.$store.state.Usuario.sobrenome,
+                    nome      : this.$store.state.Usuario.nome,
+                    rg        : this.$store.state.Usuario.rg,
+                    cpf       : this.$store.state.Usuario.cpf,
+                    dataNacimento : this.$store.state.Usuario.dataNacimento,
+                    email     : this.$store.state.Usuario.email,
+                    celular   : this.$store.state.Usuario.celular,
+                    telefone  : this.$store.state.Usuario.telefone,
                 }
             }
         },
         methods:{
-            salvar(){
-
+            salvar(){                
+                this.$store.commit( 'setUpdateUser', this.usuario )
             },
             validacao(){
-                this.valid = true
+                return true
             }
         }
     }
