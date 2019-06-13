@@ -17,7 +17,7 @@
     export default {
         data(){
             return{
-                titulo : this.$store.state.empresa.titulo,
+                titulo : this.$store.state.Empresa.titulo,
             }
         }
     }
