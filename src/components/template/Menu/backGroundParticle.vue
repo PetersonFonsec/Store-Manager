@@ -5,7 +5,6 @@
 <script>
 import 'particles.js'
 export default {
-    name: "particles",
     mounted(){
         this.particleInit();
     },
@@ -129,7 +128,7 @@ export default {
 <style scoped>
     #particleBackGround{
         width: 100%;
-        height: 50%;
+        height: 500px;
         padding: 10px;
         background-color: #111;
     }

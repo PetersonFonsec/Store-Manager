@@ -20,6 +20,15 @@
                 <td class="text-xs-left">{{ props.item.cliente }}</td>
                 <td class="text-xs-left">{{ props.item.total }}</td>
                 <td class="text-xs-left">{{ props.item.data }}</td>
+                <td class="text-xs-left">
+                    <v-btn color="error">
+                        <v-icon>delete</v-icon>
+                    </v-btn>
+
+                    <v-btn color="info">
+                        <v-icon>edit</v-icon>
+                    </v-btn>
+                </td>
             </template>
             
             <template v-slot:no-data>
@@ -40,20 +49,21 @@
 </template>
 
 <script>
-import Formulario from './Formulario'
-export default {
-    components: { Formulario },
-    props: [ 'vendas' ],
-    data(){
-        return{
-            search: '',            
-            headers: [
-                        { sortable: true, value:'id',      text: 'Código'},
-                        { sortable: true, value:'cliente', text:'Cliente'},
-                        { sortable: true, value:'data',    text:'Data'},
-                        { sortable: true, value:'total',   text:'Total'},
-                    ],
+    import Formulario from './Formulario'
+    export default {
+        components: { Formulario },
+        props: [ 'vendas' ],
+        data(){
+            return{
+                search: '',            
+                headers: [
+                            { sortable: true, value:'id',      text: 'Código',width:'10%'},
+                            { sortable: true, value:'cliente', text:'Cliente',width:'10%'},
+                            { sortable: true, value:'data',    text:'Data'   ,width:'10%'},
+                            { sortable: true, value:'total',   text:'Total'  ,width:'10%'},
+                            { sortable: true, value:'Acoes',   text:''       ,width:'10%'},
+                        ],
+            }
         }
     }
-}
 </script>

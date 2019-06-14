@@ -1,6 +1,6 @@
 <template>
     <div id="formulario">
-        <v-dialog v-model="dialog" max-width="600px">
+        <v-dialog v-model="dialog" max-width="60%">
         
             <template v-slot:activator="{ on }">
                 <v-btn color="primary" dark v-on="on">
@@ -23,38 +23,76 @@
                                         v-model="Venda.cliente"
                                         label="Nome do cliente*"
                                         :rules="validaNome"
-                                        :counter="30"                            
                                         required />
                                 </v-flex>
                             
-                                <v-flex xs6 sm4>
+                                <v-flex xs12 sm6 md4 lg2>
                                     <v-text-field 
                                         v-model="Venda.data"
-                                        :rules="validaData"
                                         label="Data da Venda*" 
                                         v-mask="'##/##/####'"
                                         required/>
                                 </v-flex>
 
-                                <v-flex xs6 sm4>
+                                <v-flex xs12 sm6 md4 lg2>
                                     <v-text-field 
-                                        v-model="Venda.total"
-                                        :rules="validaData"
-                                        label="Total da venda*" 
-                                        v-money="ruleMoney"
+                                        v-model="Venda.desconto"
+                                        label="Desconto" 
+                                        v-money="ruleDesconto"
                                         required/>
                                 </v-flex>
-                                
+
+                                <v-flex xs12 sm6 md4 lg2>
+                                    <v-text-field 
+                                        :value="Venda.total"
+                                        label="Total da venda*" 
+                                        v-money="ruleMoney"
+                                        disabled/>
+                                </v-flex>
+
+                                <v-flex xs12 sm12 md12 lg6>
+                                    <v-text-field v-model="search" append-icon="search" 
+                                        label="Buscar" single-line hide-details>
+                                    </v-text-field>
+                                </v-flex>
+
+                                <v-flex xs12>
+                                    <v-data-table 
+                                        :headers="headers"
+                                        :items="Produtos"
+                                        :search="search">
+                                        <template v-slot:items="props">
+                                            <td class="text-xs-left"   width="40%"> {{ props.item.nome }}  </td>
+                                            <td class="text-xs-center" width="20%">   
+                                                 <v-text-field 
+                                                    :value="props.item.preco_compra"
+                                                    v-money="ruleMoney"
+                                                    disabled/>
+                                            </td>
+                                            <td class="text-xs-center" width="20%">  
+                                                <v-text-field 
+                                                    :value="props.item.preco_venda"
+                                                    v-money="ruleMoney"
+                                                    disabled/>
+                                            </td>
+                                            <td class="text-xs-center" width="20%"> 
+                                                <v-text-field             
+                                                    :data-produtoId="props.item.id"
+                                                    @change="addProduto( props.item.id )"
+                                                    placeholder="Quantidade"/>
+                                            </td>
+                                        </template>
+                                    </v-data-table>
+                                </v-flex>
                             </v-layout>
                         </v-form>    
                     </v-container>
-                    <small>* indica campos obrigatórios</small>
                 </v-card-text>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click="dialog = false">Fechar</v-btn>
-                    <v-btn color="blue darken-1" flat @click="dialog = false">Salvar</v-btn>
+                    <v-btn color="blue darken-1" flat @click="salvar">Salvar</v-btn>
                 </v-card-actions>
                 
             </v-card>
@@ -67,24 +105,68 @@ export default {
     data(){
         return {
             dialog: false,
+            search: '',            
             valid: false,
-            validaNome: [ txt => !!txt || 'Campo Nome é obrigatório' ] ,
-            validaData: [ txt => !!txt || 'Campo Nome é obrigatório' ] ,
-            Produtos: [ 'Bebida', 'Laticios', 'Medicamentos', 'Venda de Limpesa' ],
+            headers: [
+                { sortable: true, value:'nome', text:'Nome'},
+                { sortable: true, value:'preco_compra', text:'Preço Compra'},
+                { sortable: true, value:'preco_venda', text:'Preço Venda'},
+                { sortable: true, value:'Quantidade', text:'Quantidade'},
+            ],
+            Produtos: [
+                {
+                    id: '001',
+                    preco_compra: 20,
+                    preco_venda: 1.5,
+                    nome: 'pizza',
+                },
+                {
+                    id: '002',
+                    preco_compra: 20,
+                    preco_venda: 1.5,
+                    nome: 'coca',
+                },
+                {
+                    id: '003',
+                    preco_compra: 20,
+                    preco_venda: 1.5,
+                    nome: 'refri',
+                },
+                {
+                    id: '004',    
+                    preco_compra: 20,
+                    preco_venda: 1.5,
+                    nome: 'pastel',
+                },
+                {
+                    id: '005',    
+                    preco_compra: 20,
+                    preco_venda: 1.5,
+                    nome: 'cadeira',
+                },
+            ],
             ProdutosVendidos: [],
             ruleMoney:{
                 decimal: ',',
                 thousands: '.',
                 prefix: 'R$ ',
-                suffix: '',
                 precision: 2,
-                masked: false
+            },
+            ruleDesconto:{
+                decimal: ',',
+                thousands: '.',
+                prefix: '',
+                suffix: '%',
+                precision: 2,
             },
             Venda:{
                 cliente:'',
                 data: this.hojeString(),
-                Total: 0,
+                total: 0,
+                desconto: 0,
             },
+            validaNome : [ txt => !!txt || 'Campo Nome é obrigatório' ] ,
+            // [ valor => !isNaN( valor ) ]
         }
     },
     methods:{
@@ -100,10 +182,24 @@ export default {
                 cliente:'',
                 data: this.hojeString(),
                 Total: 0,
+                desconto: 0,
             }
         },
         salvar(){
-
+            this.dialog = false
+        },
+        addProduto( id ){
+            const quantidade = document.querySelector(`[ data-produtoId='${ id }' ]`).value
+            
+            if( quantidade > 0 ){
+                const Produto = this.Produtos.filter( Produto => Produto.id == id )[0]
+                
+                this.Venda.total += ( Produto.preco_venda * quantidade )
+                
+                // eslint-disable-next-line
+                console.log( this.Venda.total )
+                
+            }
         }
     }
 }
