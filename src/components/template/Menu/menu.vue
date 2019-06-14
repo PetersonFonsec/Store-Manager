@@ -1,5 +1,6 @@
 <template>
     <div id="menu">
+        
         <div id="logo">
             <img  src="@/assets/logo.png" alt="logoTipo">
             <h1> {{ titulo }} </h1>

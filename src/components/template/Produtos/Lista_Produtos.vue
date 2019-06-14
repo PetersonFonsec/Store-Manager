@@ -15,10 +15,19 @@
         <v-data-table :headers="headers" :items="produtos" :search="search">
 
             <template v-slot:items="props">
-                <td class="text-xs-left">{{ props.item.codigo }}</td>
-                <td class="text-xs-left">{{ props.item.nome }}</td>
-                <td class="text-xs-left">{{ props.item.preco_venda }}</td>
-                <td class="text-xs-left">{{ props.item.preco_compra }}</td>
+                <td class="text-xs-left" width="10%">{{ props.item.codigo }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.nome }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.preco_venda }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.preco_compra }}</td>
+                <td class="text-xs-left" width="23%">
+                    <v-btn color="error">
+                        <v-icon>delete</v-icon>
+                    </v-btn>
+
+                    <v-btn color="info">
+                        <v-icon>edit</v-icon>
+                    </v-btn>
+                </td>
             </template>
             
             <template v-slot:no-data>
@@ -51,6 +60,7 @@ export default {
                         { sortable: true, value:'nome',    text:'Nome'},
                         { sortable: true, value:'preco_venda',   text:'Preço Venda'},
                         { sortable: true, value:'preco_compra',  text:'Preço Compra'},
+                        { sortable: true, value:'acoes',  text:''},
                     ],
         }
     }

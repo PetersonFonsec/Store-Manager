@@ -1,16 +1,21 @@
 <template>
-  <v-app>
-    
-    <Menu zindex/>
-    <particleBG bg-fixo/>
+  <v-app>    
 
-    <btnFlutuante zindex/>
-    
-    <transition mode="out-in" 
-        enter-active-class="animated slideInLeft"  
-        leave-active-class="animated slideOutLeft">
-          <router-view/>
-    </transition>
+    <template v-if="Logado">
+      <particleBG bg-fixo height="'500px'"/>
+      <Menu zindex/>
+      <btnFlutuante zindex/>
+      
+      <transition mode="out-in"
+          enter-active-class="animated slideInUp"  
+          leave-active-class="animated slideOutBottom">
+            <router-view/>
+      </transition>
+    </template>
+
+    <template v-else>
+      <Login @Logar='Logado = true '/>
+    </template>   
 
   </v-app>
 </template>
@@ -20,17 +25,24 @@
   import Menu from '@/components/template/Menu/menu'
   import particleBG from '@/components/template/Menu/backGroundParticle'
   import btnFlutuante from '@/components/template/botao_Flutuante'
+  import Login  from './components/Login'
 
   export default {
     name: 'App',
     components: {
+      Login,
       particleBG,
       Menu,
       btnFlutuante
-    }
+    },
+    data(){
+      return{
+        Logado: false
+      }
+    },
   }
 </script>
-<style scoped>
+<style>
   [ bg-fixo ]{
     position: absolute;
     z-index: 0;

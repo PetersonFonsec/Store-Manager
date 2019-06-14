@@ -1,10 +1,17 @@
 <template>
-    <div id="particleBackGround"></div>
+    <div id="particleBackGround" 
+        :style="`
+            width: 100%;
+            height: ${ height };
+            padding: 10px;
+            background-color: #111;`">
+    </div>
 </template>
 
 <script>
 import 'particles.js'
 export default {
+    props: [ 'height' ],
     mounted(){
         this.particleInit();
     },

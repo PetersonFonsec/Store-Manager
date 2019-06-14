@@ -6,6 +6,7 @@ const vendas   = () => import('./components/Venda')
 const produtos = () => import('./components/Produto')
 const clientes = () => import('./components/Cliente')
 const config   = () => import('./components/Config')
+const Login    = () => import('./components/Login')
 const notFond  = () => import('./components/Cliente')
 
 Vue.use( Router )
@@ -14,7 +15,12 @@ export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/Login',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/Dashboad',
             component: dashboad
         },
         {
@@ -28,6 +34,10 @@ export default new Router({
         {
             path: '/Clientes',
             component : clientes
+        },
+        {
+            path: '/Config',
+            component: config
         },
         {
             path: '/Config',

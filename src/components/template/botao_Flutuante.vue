@@ -18,7 +18,7 @@
         
         <v-btn fab dark small color="green">
           <!-- <v-icon>dashboard</v-icon> -->
-          <router-link tag="span" to="/">
+          <router-link tag="span" to="/Dashboad">
             <v-icon>home</v-icon>
           </router-link> 
         </v-btn>

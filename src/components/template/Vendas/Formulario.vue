@@ -44,9 +44,10 @@
 
                                 <v-flex xs12 sm6 md4 lg2>
                                     <v-text-field 
-                                        :value="Venda.total"
                                         label="Total da venda*" 
                                         v-money="ruleMoney"
+                                        id="total_venda"
+                                        :value="Venda.total"
                                         disabled/>
                                 </v-flex>
 
