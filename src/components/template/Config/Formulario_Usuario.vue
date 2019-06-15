@@ -1,5 +1,5 @@
 <template>
-       <v-container grid-list-md id='Formulario_Usuario' >
+    <v-container grid-list-md id='Formulario_Usuario' >
         <v-layout wrap>   
 
             <v-flex xs12>

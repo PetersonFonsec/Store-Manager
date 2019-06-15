@@ -8,7 +8,7 @@
       
       <transition mode="out-in"
           enter-active-class="animated slideInUp"  
-          leave-active-class="animated slideOutBottom">
+          leave-active-clasnos="animated slideOutBottom">
             <router-view/>
       </transition>
     </template>

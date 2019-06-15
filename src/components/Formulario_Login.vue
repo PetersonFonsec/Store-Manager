@@ -31,7 +31,7 @@
                 </v-flex>
 
                 <v-flex xs12 md5>
-                    <v-btn color="primary" block> Criar conta </v-btn>
+                    <FormularioCadastro />
                 </v-flex>
             </v-layout>
         </v-card>
@@ -39,7 +39,9 @@
 </template>
 
 <script>
+    import FormularioCadastro from './template/Login/Formulario_Cadastro_Usuario'
     export default {
+        components: { FormularioCadastro },
         data(){
             return{
                 valid: false,
