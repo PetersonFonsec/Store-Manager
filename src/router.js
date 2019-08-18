@@ -15,37 +15,40 @@ export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/Login',
+            path: '/',
             name: 'Login',
-            component: Login
+            component: Login,
+            meta: { requiresAuth: false }
         },
         {
             path: '/Dashboad',
-            component: dashboad
+            component: dashboad,
+            meta: { requiresAuth: true }
         },
         {
             path: '/Vendas',
-            component :  vendas
+            component :  vendas,
+            meta: { requiresAuth: true }
         },
         {
             path: '/Produtos',
-            component : produtos
+            component : produtos,
+            meta: { requiresAuth: true }
         },
         {
             path: '/Clientes',
-            component : clientes
+            component : clientes,
+            meta: { requiresAuth: true }
         },
         {
             path: '/Config',
-            component: config
-        },
-        {
-            path: '/Config',
-            component: config
+            component: config,
+            meta: { requiresAuth: true }
         },
         {
             path: '*',
-            component: notFond
+            component: notFond,
+            meta: { requiresAuth: false }
         },        
     ],
 })

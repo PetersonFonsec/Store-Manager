@@ -1,14 +1,16 @@
 <template>
-    <div id="Produtos" >
+    <div id="Produtos">
+        <Menu></Menu>
         <Lista :produtos="produtos"/>
     </div>
 </template>
 
 <script>
     import Lista from './template/Produtos/Lista_Produtos'
+    import Menu from "./template/Menu/menu";
 
     export default {
-        components: { Lista },
+        components: { Lista, Menu },
         data(){
             return{
                 produtos:[
@@ -50,6 +52,7 @@
 <style scoped>
     #Produtos{
         width: 90%;
-        margin: auto;
+        margin: 0 auto;
+        z-index: 5;
     }
 </style>
