@@ -197,9 +197,6 @@ export default {
                 
                 this.Venda.total += ( Produto.preco_venda * quantidade )
                 
-                // eslint-disable-next-line
-                console.log( this.Venda.total )
-                
             }
         }
     }

@@ -11,12 +11,14 @@
                     <v-flex xs12>
                         <v-text-field
                             label="Usuário"
+                            v-model="user.login"
                             required/>
                     </v-flex>
 
                     <v-flex xs12>
                         <v-text-field
                             label="senha"
+                            v-model="user.password"
                             :append-icon=" mostrarSenha ? 'visibility' : 'visibility_off'"
                             :type=" mostrarSenha ? 'text' : 'password'"
                             @click:append="mostrarSenha = !mostrarSenha"
@@ -39,18 +41,24 @@
 </template>
 
 <script>
-    import FormularioCadastro from './template/Login/Formulario_Cadastro_Usuario'
+    import FormularioCadastro from './template/Login/Formulario_Cadastro_Usuario';
+    import Login from "./../models/Login";
+    import Axios from "axios";
     export default {
         components: { FormularioCadastro },
         data(){
             return{
                 valid: false,
-                mostrarSenha: false
+                mostrarSenha: false,
+                user: new Login,
             }
         },
         methods:{
-            logar(){
-                this.$emit('Logar' , true)
+            async logar(){
+                const resp = await Axios.post("http://localhost:3000/auth", this.user);
+                localStorage.setItem("token", `Bearer ${resp.data.token}`);
+                localStorage.setItem("_id", resp.data[0]._id);
+                this.$router.push({path: '/Dashboad'});
             }
         }
     }

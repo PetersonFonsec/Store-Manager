@@ -2,16 +2,16 @@
     <div id="particleBackGround" 
         :style="`
             width: 100%;
-            height: ${ height };
+            height: 100%;
             padding: 10px;
-            background-color: #111;`">
+            background-color: #111;
+            z-index: 0`">
     </div>
 </template>
 
 <script>
 import 'particles.js'
 export default {
-    props: [ 'height' ],
     mounted(){
         this.particleInit();
     },

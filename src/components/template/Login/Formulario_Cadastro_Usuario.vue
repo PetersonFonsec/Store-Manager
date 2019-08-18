@@ -53,6 +53,12 @@
                                 required />
                         </v-flex>
 
+                        <v-flex xs12 md12 >
+                            <v-text-field v-model="usuario.password"
+                                label="password"
+                                required />
+                        </v-flex>
+
                         <v-flex xs12>
                             <h3>Dados adicionais</h3>
                         </v-flex>
@@ -121,6 +127,10 @@
 </template>
 
 <script>
+import User from './../../../models/Cadastro';
+import axios from "axios";
+import dotenv from "dotenv/config";
+import vueRouter from "vue-router";
 export default {
     data(){
         return{
@@ -131,24 +141,18 @@ export default {
                 'ES',
                 'MG',
             ],
-            usuario :{
-                nome:'',
-                sobrenome: '',
-                telefone: '',
-                celular: '',
-                email:'',
-                dataNacimento: '',
-                cpf: '',
-                rg: '',
-                cep:'',
-                municipio:'',
-                rua:'',
-                estado:''
-            }
+            usuario : new User,
         }        
     },
     methods: {
-        salvar(){}
+        async salvar(){
+            const resp = await axios.post(`http://localhost:3000/auth/include`, this.usuario);
+            const token = `Bearer ${resp.data.token}`;
+            
+            localStorage.setItem("token", token);
+            localStorage.setItem("_id", resp.data._id);
+            this.$router.push({path: '/Dashboad'});
+        }
     }
 }
 </script>
