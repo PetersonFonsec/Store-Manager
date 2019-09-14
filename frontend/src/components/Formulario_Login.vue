@@ -42,7 +42,6 @@
 
 <script>
     import FormularioCadastro from './template/Login/Formulario_Cadastro_Usuario';
-    import Login from "./../models/Login";
     import Axios from "axios";
     export default {
         components: { FormularioCadastro },
@@ -50,7 +49,7 @@
             return{
                 valid: false,
                 mostrarSenha: false,
-                user: new Login,
+                user: {},
             }
         },
         methods:{

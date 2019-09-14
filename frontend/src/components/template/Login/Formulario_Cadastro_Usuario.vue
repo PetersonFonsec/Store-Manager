@@ -127,7 +127,6 @@
 </template>
 
 <script>
-import User from './../../../models/Cadastro';
 import axios from "axios";
 import dotenv from "dotenv/config";
 import vueRouter from "vue-router";
@@ -141,7 +140,7 @@ export default {
                 'ES',
                 'MG',
             ],
-            usuario : new User,
+            usuario : {},
         }        
     },
     methods: {
