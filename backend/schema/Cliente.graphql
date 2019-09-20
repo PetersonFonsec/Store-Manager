@@ -1,0 +1,11 @@
+type Cliente {
+
+}
+
+input ClienteInput {
+
+}
+
+input ClienteFiltro{
+    
+}

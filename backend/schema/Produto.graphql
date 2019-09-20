@@ -1,0 +1,11 @@
+type Produto {
+
+}
+
+input ProdutoInput {
+
+}
+
+input ProdutoFiltro{
+    
+}

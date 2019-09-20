@@ -1,0 +1,15 @@
+type Query {
+    
+    usuarios: [usuario]
+    usuario(id:int): usuario
+    
+    produtos: [produto]
+    produtos(id:int): produto
+
+    vendas: [venda]
+    venda(id:int): venda
+
+    clientes: [cliente]
+    cliente(id:int): cliente
+
+}

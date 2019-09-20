@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const dashboad = () => import('./components/Dashboad')
-const vendas   = () => import('./components/Venda')
-const produtos = () => import('./components/Produto')
-const clientes = () => import('./components/Cliente')
-const config   = () => import('./components/Config')
-const Login    = () => import('./components/Login')
-const notFond  = () => import('./components/Cliente')
+const dashboad = () => import('./views/Dashboad')
+const vendas   = () => import('./views/Venda')
+const produtos = () => import('./views/Produto')
+const clientes = () => import('./views/Cliente')
+const config   = () => import('./views/Config')
+const Login    = () => import('./views/Login')
+const notFond  = () => import('./views/Cliente')
 
 Vue.use( Router )
 

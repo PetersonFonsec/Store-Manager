@@ -1,0 +1,8 @@
+# import Usuario  from 'Usuario.graphql'
+# import Produto  from 'Produto.graphql'
+# import Cliente  from 'Cliente.graphql'
+# import Compra   from 'Compra.graphql'
+# import Estoque  from 'Estoque.graphql'
+# import Mutation from 'Mutation.grapqhl'
+# import Fornecedor  from 'Fornecedor.graphql'
+# import Query from 'Query.graphql'

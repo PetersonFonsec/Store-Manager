@@ -1,0 +1,19 @@
+type Mutation { 
+
+    novoUsuarios(dados: UsuarioInput): Usuario
+    excluirUsuario(filtro:UsuarioFiltro): Usuario
+    alterarUsuario(filtro:UsuarioFiltro dados:UsuarioInput): Usuario
+    
+    novoProdutos(dados:ProdutoInput): Produto
+    excluirProdutos(filtro:ProdutoFiltro): Produto
+    alterarProdutos(filtro:ProdutoFiltro dados:ProdutoInput): Produto
+
+    novaVenda(dados: VedaInput): Venda
+    excluirVenda(filtro:VendaFiltro ): Venda
+    alterarVenda(filtro:VendaFiltro dados:VendaInput): Venda
+
+    novoCliente(dados: ClienteInput): Cliente
+    excluirVenda(filtro:ClienteFiltro ): Cliente
+    alterarVenda(filtro:ClienteFiltro dados:ClienteInput): Cliente
+
+}

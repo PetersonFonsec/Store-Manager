@@ -1,0 +1,11 @@
+type Usuario {
+
+}
+
+input UsuarioInput {
+
+}
+
+input UsuarioFiltro{
+    
+}

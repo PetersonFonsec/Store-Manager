@@ -1,0 +1,11 @@
+type Estoque {
+
+}
+
+input EstoqueInput {
+
+}
+
+input EstoqueFiltro{
+    
+}
