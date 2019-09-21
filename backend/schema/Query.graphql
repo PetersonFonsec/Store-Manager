@@ -1,7 +1,7 @@
 type Query {
     
     usuarios: [Usuario]
-    usuario(id:Int!): Usuario
+    usuario(filtro:UsuarioFiltro!): Usuario
     
     produtos: [Produto]
     produto(id:Int!): Produto

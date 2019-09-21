@@ -1,4 +1,10 @@
+const db = require('../../db/knex')
+
 module.exports = {
-    compras(_, {dados}){},
-    compra(_,{filtro}){},
+    async compras(){
+        return await db('compras')
+    },
+    async compra(_, { filtro }){
+        return await db('compras').where({ ...filtro }).first()
+    },
 }

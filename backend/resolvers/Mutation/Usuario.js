@@ -1,5 +1,14 @@
+const db = require('../../db/knex')
+
 module.exports = {
-    novoUsuarios(_, {dados}){},
-    excluirUsuario(_,{filtro}){},
-    alterarUsuario( _, {filtro, dados}){}
+    async novoUsuario(_, { dados }){
+        return await db.insert({ ...dados }).into('usuario')
+    },
+    async excluirUsuario(_,{ filtro }){
+        return await db('usuario').where({ ...filtro }).delete()
+    },
+    async alterarUsuario( _, { filtro, dados }){
+        return await db('usuario').where({ ...filtro }).update({ ...dados })
+
+    }
 }

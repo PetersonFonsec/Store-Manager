@@ -1,5 +1,13 @@
+const db = require('../../db/knex')
+
 module.exports = {
-    novoFornecedor(_, {dados}){},
-    excluirFornecedor(_,{filtro}){},
-    alterarFornecedor( _, {filtro, dados}){}
+    async novoFornecedor(_, { dados }){
+        return await db.insert({ ...dados }).into('fornecedores')
+    },
+    async excluirFornecedor(_,{ filtro }){
+        return await db('fornecedores').where({ ...filtro }).delete()
+    },
+    async alterarFornecedor( _, {filtro, dados}){
+        return await db('fornecedores').where({ ...filtro }).update({ ...dados })
+    }
 }

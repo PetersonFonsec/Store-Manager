@@ -1,5 +1,13 @@
+const db = require('../../db/knex')
+
 module.exports = {
-    novoEstoque(_, {dados}){},
-    excluirEstoque(_,{filtro}){},
-    alterarEstoque( _, {filtro, dados}){}
+    async novoEstoque(_, { dados }){
+        return await db.insert({ ...dados }).into('estoque')
+    },
+    async excluirEstoque(_, { filtro }){
+        return await db('estoque').where({ ...filtro }).update({ ...dados })
+    },
+    async alterarEstoque( _, { filtro, dados }){
+        return await db('estoque').where({ ...filtro }).update({ ...dados })
+    }
 }
