@@ -1,5 +1,5 @@
 module.exports = {
-    novoClientes(_, {dados}){},
+    novoCliente(_, {dados}){},
     excluirCliente(_,{filtro}){},
     alterarCliente( _, {filtro, dados}){}
 }

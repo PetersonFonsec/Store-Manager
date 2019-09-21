@@ -1,15 +1,27 @@
 type Query {
     
-    usuarios: [usuario]
-    usuario(id:int): usuario
+    usuarios: [Usuario]
+    usuario(id:Int!): Usuario
     
-    produtos: [produto]
-    produtos(id:int): produto
+    produtos: [Produto]
+    produto(id:Int!): Produto
 
-    vendas: [venda]
-    venda(id:int): venda
+    vendas: [Venda]
+    venda(id:Int!): Venda
 
-    clientes: [cliente]
-    cliente(id:int): cliente
+    clientes: [Cliente]
+    cliente(id:Int!): Cliente
 
+    compras: [Compra]
+    compra(id:Int!): Compra
+
+    estoques: [Estoque]
+    estoque(id:Int!): Estoque
+    
+    fornecedores: [Fornecedor]
+    fornecedor(id:Int!): Fornecedor
+    
+    categorias: [Categoria]
+    categoria(id:Int!): Categoria
+    
 }

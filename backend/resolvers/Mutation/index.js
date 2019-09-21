@@ -13,5 +13,5 @@ module.exports = {
     ...Usuario,
     ...Fornecedor,
     ...Compra,
-    ...Estoque,    
+    ...Estoque
 }

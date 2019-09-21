@@ -1,11 +1,20 @@
 type Usuario {
-
+    id: Int!
+    nome: String!
+    senha: String!
+    email: String!
+    ativo: Boolean
 }
 
 input UsuarioInput {
-
+    id: Int!
+    nome: String
+    senha: String
+    email: String
+    ativo: Boolean
 }
 
 input UsuarioFiltro{
-    
+    email: String
+    id: Int    
 }

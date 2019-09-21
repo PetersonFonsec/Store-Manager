@@ -1,11 +1,28 @@
 type Fornecedor {
-
+    id: Int!
+    cnpj: String!
+    nome_fantasia: String
+    razao_social: String
+    contato: String!
+    telefone: String
+    celular: String
+    email: String!
 }
 
 input FornecedorInput {
+    id: Int
+    cnpj: String
+    nome_fantasia: String
+    razao_social: String
+    contato: String
+    telefone: String
+    celular: String
+    email: String
 
 }
 
 input FornecedorFiltro{
-    
+    email: String
+    id: Int
+    cnpj: String    
 }

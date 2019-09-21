@@ -1,11 +1,18 @@
-type Comnpra {
-
+type Compra {
+    id: Int!
+    fornecedor_id: Int!
+    total: Float!
+    forma_pagamento: Int!
 }
 
-input ComnpraInput {
-
+input CompraInput {
+    id: Int!
+    fornecedor_id: Int!
+    total: Float!
+    forma_pagamento: Int!
 }
 
-input ComnpraFiltro{
-    
+input CompraFiltro{
+    id: Int!
+    fornecedor_id: Int!    
 }

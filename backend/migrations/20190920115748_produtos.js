@@ -6,6 +6,7 @@ exports.up = function(knex) {
     table.string('descricao').notNull()
     table.float('preco_compra').notNull()
     table.float('preco_venda').notNull()
+    table.integer('categoria_id').unsigned()
     table.foreign('categoria_id').references('categorias.id')
   })
 };

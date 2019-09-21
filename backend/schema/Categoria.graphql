@@ -1,0 +1,16 @@
+type Categoria {
+    id: Int!
+    unidade_medida: Int!
+    nome: String!
+}
+
+input CategoriaInput{
+    id: Int!
+    unidade_medida: Int
+    nome: String
+}
+
+input CategoriaFiltro{
+    id: Int!
+    nome: String
+}

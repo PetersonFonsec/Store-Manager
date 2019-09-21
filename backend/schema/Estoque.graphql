@@ -1,11 +1,13 @@
 type Estoque {
-
+    produto_id: Int!
+    quantidade: Float!
 }
 
 input EstoqueInput {
-
+    produto_id: Int!
+    quantidade: Float!
 }
 
 input EstoqueFiltro{
-    
+    produto_id: Int!    
 }

@@ -8,12 +8,31 @@ type Mutation {
     excluirProdutos(filtro:ProdutoFiltro): Produto
     alterarProdutos(filtro:ProdutoFiltro dados:ProdutoInput): Produto
 
-    novaVenda(dados: VedaInput): Venda
+    novaVenda(dados: VendaInput): Venda
     excluirVenda(filtro:VendaFiltro ): Venda
     alterarVenda(filtro:VendaFiltro dados:VendaInput): Venda
 
     novoCliente(dados: ClienteInput): Cliente
-    excluirVenda(filtro:ClienteFiltro ): Cliente
-    alterarVenda(filtro:ClienteFiltro dados:ClienteInput): Cliente
+    excluirCliente(filtro:ClienteFiltro ): Cliente
+    alterarCliente(filtro:ClienteFiltro dados:ClienteInput): Cliente
+
+    novaCompra(dados: CompraInput): Compra
+    excluirCompra(filtro:CompraFiltro ): Compra
+    alterarCompra(filtro:CompraFiltro dados:CompraInput): Compra
+
+    adicionarProdutoEstoque(dados: EstoqueInput): Estoque
+    alterarProdutoEstoque(filtro:EstoqueFiltro dados:EstoqueInput): Estoque
+    
+    novoFornecedor(dados: FornecedorInput): Fornecedor
+    excluirFornecedor(filtro:FornecedorFiltro ): Fornecedor
+    alterarFornecedor(filtro:FornecedorFiltro dados:FornecedorInput): Fornecedor
+  
+    novoCategorias(dados: CategoriaInput): Categoria
+    excluirCategoria(filtro:CategoriaFiltro ): Categoria
+    alterarCategoria(filtro:CategoriaFiltro dados:CategoriaInput): Categoria
+
+    novoEstoque(dados: EstoqueInput): Estoque
+    excluirEstoque(filtro:EstoqueFiltro ): Estoque
+    alterarEstoque(filtro:EstoqueFiltro dados:EstoqueInput): Estoque
 
 }

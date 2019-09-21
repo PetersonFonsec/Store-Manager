@@ -1,5 +1,5 @@
 module.exports = {
-    novoCompra(_, {dados}){},
+    novaCompra(_, {dados}){},
     excluirCompra(_,{filtro}){},
     alterarCompra( _, {filtro, dados}){}
 }

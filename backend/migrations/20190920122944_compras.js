@@ -2,6 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('compras', table =>{
     table.increments('id').primary()
+    table.integer('fornecedor_id').unsigned()
     table.foreign('fornecedor_id').references('fornecedores.id')
     table.timestamp('data').defaultTo(knex.fn.now())
     table.float('total').notNull()
