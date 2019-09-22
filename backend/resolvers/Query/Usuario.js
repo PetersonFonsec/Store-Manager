@@ -1,10 +1,10 @@
-const db = require('../../db/knex')
+const UsuarioController = require('../../controllers/Usuario')
 
 module.exports = {
-    async usuarios(){
-        return db('usuario')
+    usuarios(){
+        return UsuarioController.listarUsuarios()
     },
-    async usuario( _, { filtro } ){
-        return db('usuario').where({ ...filtro }).first()
+    usuario( _, { filtro } ){
+        return UsuarioController.buscarUsuario(filtro)
     },
 }

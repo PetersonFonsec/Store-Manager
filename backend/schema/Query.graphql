@@ -1,7 +1,9 @@
 type Query {
     
-    usuarios: [Usuario]
-    usuario(filtro:UsuarioFiltro!): Usuario
+    login(email:String, senha:String):UsuarioOutput
+
+    usuarios: [UsuarioOutput]
+    usuario(filtro:UsuarioFiltro!): UsuarioOutput
     
     produtos: [Produto]
     produto(id:Int!): Produto
