@@ -5,7 +5,6 @@ const dashboad = () => import('./views/Dashboad')
 const vendas   = () => import('./views/Venda')
 const produtos = () => import('./views/Produto')
 const clientes = () => import('./views/Cliente')
-const config   = () => import('./views/Config')
 const Login    = () => import('./views/Login')
 const notFond  = () => import('./views/Cliente')
 
@@ -38,11 +37,6 @@ export default new Router({
         {
             path: '/Clientes',
             component : clientes,
-            meta: { requiresAuth: true }
-        },
-        {
-            path: '/Config',
-            component: config,
             meta: { requiresAuth: true }
         },
         {

@@ -38,8 +38,8 @@
 </template>
 
 <script>
-  import Menu from "./template/Menu/menu";
-  import Grafico from './template/Dashboad/Grafico';
+  import Menu from "@/components/Menu/menu";
+  import Grafico from '@/components/Dashboad/Grafico';
 
   export default {
     components : { 

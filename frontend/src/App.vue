@@ -2,34 +2,26 @@
   <v-app>
 
     <particleBG height="100%" bg-fixo />
+
     <router-view></router-view>
 
   </v-app>
 </template>
 
 <script>
-  import  '@/css/animate.css'
-  import Menu from '@/components/template/Menu/menu'
-  import particleBG from '@/components/template/Menu/backGroundParticle'
-  import btnFlutuante from '@/components/template/botao_Flutuante'
-  import Login  from './components/Login'
+  import { mapState } from 'vuex'
+  import particleBG from '@/components/Menu/backGroundParticle'
 
   export default {
     name: 'App',
-    components: {
-      Login,
-      particleBG,
-      Menu,
-      btnFlutuante
-    },
-    data(){
-      return{
-        Logado: false
-      }
-    },
+    components: { particleBG },
+    computed: {
+      ...mapState(['usuarioEstaLogado'])
+    }
   }
 </script>
-<style>
+
+<style scoped>
   [ bg-fixo ]{
     position: absolute;
     z-index: 0;

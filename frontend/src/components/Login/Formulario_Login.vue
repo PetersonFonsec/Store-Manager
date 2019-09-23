@@ -4,69 +4,69 @@
             <v-layout wrap style="flex-direction: column;">
 
                 <v-card-title xs12>
-                    <h1>Login</h1>
+                    <span class="title-login">Login</span>
                 </v-card-title>
 
                 <v-form v-model="valid">
                     <v-flex xs12>
                         <v-text-field
-                            label="Usuário"
-                            v-model="user.login"
+                            label="Email"
+                            v-model="user.email"
                             required/>
                     </v-flex>
 
                     <v-flex xs12>
-                        <v-text-field
-                            label="senha"
-                            v-model="user.password"
-                            :append-icon=" mostrarSenha ? 'visibility' : 'visibility_off'"
-                            :type=" mostrarSenha ? 'text' : 'password'"
-                            @click:append="mostrarSenha = !mostrarSenha"
-                            required/>
+                        <Input-Senha @setingPassword="setPassword"/>
                     </v-flex>
 
                 </v-form>
             </v-layout>
+
             <v-layout style="justify-content: space-evenly;">
+
                 <v-flex xs12 md5>
                     <v-btn color="success" block @click="logar"> Entrar </v-btn>
                 </v-flex>
 
                 <v-flex xs12 md5>
-                    <FormularioCadastro />
+                    <Formulario-Cadastro />
                 </v-flex>
+
             </v-layout>
+
         </v-card>
     </div>
 </template>
 
 <script>
-    import FormularioCadastro from './template/Login/Formulario_Cadastro_Usuario';
-    import Axios from "axios";
+    import FormularioCadastro from '@/components/Login/Formulario_Cadastro_Usuario';
+    import InputSenha from '@/components/Login/input-senha';
     export default {
-        components: { FormularioCadastro },
+        components: { FormularioCadastro, InputSenha },
         data(){
             return{
                 valid: false,
-                mostrarSenha: false,
                 user: {},
             }
         },
         methods:{
-            async logar(){
-                const resp = await Axios.post("http://localhost:3000/auth", this.user);
-                localStorage.setItem("token", `Bearer ${resp.data.token}`);
-                localStorage.setItem("_id", resp.data[0]._id);
+            logar(){
                 this.$router.push({path: '/Dashboad'});
+            },
+            setPassword(senha){
+                this.senha = senha
             }
         }
     }
 </script>
 
 <style scoped>
-    #Formulario_login{
+    #Formulario_login {
         width: 30%;
         margin: 10% auto;
         padding: 20px;
+    }
+    #Formulario_login .title-login {
+        font-size: 30px;
     }
 </style>

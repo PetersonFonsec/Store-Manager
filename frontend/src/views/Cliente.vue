@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Lista from '@/components/template/Clientes/Lista_Clientes'
-import Menu from "@/components/template/Menu/menu";
+import Lista from '@/components/Clientes/Lista_Clientes'
+import Menu from "@/components/Menu/menu";
 
 export default {
     components: { Lista, Menu },

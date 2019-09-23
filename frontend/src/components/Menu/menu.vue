@@ -18,7 +18,7 @@
     export default {
         data(){
             return{
-                titulo : this.$store.state.Empresa.titulo,
+                titulo : 'Pet Store Manager',
             }
         }
     }

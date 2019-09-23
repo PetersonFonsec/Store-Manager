@@ -5,13 +5,12 @@
 </template>
 
 <script>
-    import "chart.js";
+    import Chart from "chart.js";
     export default {
         props:[ 'datasets', 'labels', 'type', 'id' ],
         mounted(){
             const canvas = document.querySelector(`#${ this.id }`).getContext('2d')
             
-            // eslint-disable-next-line
             new Chart( canvas, {
                 type: this.type,
                 data:{

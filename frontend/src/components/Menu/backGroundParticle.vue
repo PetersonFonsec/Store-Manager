@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import 'particles.js'
 export default {
     mounted(){
         this.particleInit();

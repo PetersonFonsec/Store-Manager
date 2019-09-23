@@ -5,19 +5,15 @@
 </template>
 
 <script>
-    import Formulario from './Formulario_Login'
-    export default {
-        components:{ 
-            Formulario,
-        },
-        methods:{
-            logar(){
-                this.$emit('Logar' , true)
-            }
+import Formulario from '@/components/Login/Formulario_Login'
+export default {
+    components:{ Formulario },
+    methods:{
+        logar(){
+            
         }
     }
+}
 </script>
 
-<style>
-
-</style>
+<style scoped></style>
