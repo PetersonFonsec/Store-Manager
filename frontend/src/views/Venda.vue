@@ -1,16 +1,14 @@
 <template>
     <div id="Vendas">
-        <Menu></Menu>
-        <Lista :vendas="vendas"/>
+        <Lista  :vendas="vendas"/>
     </div>
 </template>
 
 <script>
     import Lista from '@/components/Vendas/Lista_Vendas'
-    import Menu from "@/components/Menu/menu";
 
     export default {
-        components: { Lista, Menu },
+        components: { Lista },
         data(){
             return{
                 vendas:[
@@ -54,6 +52,5 @@
     #Vendas{
         width: 90%;
         margin: 0 auto;
-        z-index: 5;
     }
 </style>

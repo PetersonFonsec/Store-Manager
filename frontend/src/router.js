@@ -51,7 +51,7 @@ routes.beforeEach( (to, from, next) => {
 
     const token = localStorage.getItem('token')
 
-    if(!token) return  routes.push({ path: "Login"});
+    if(!token) return  routes.push({ path: "/Login"});
 
     // return tokenEhValido ? next() : routes.push({ path: "Login"});
     

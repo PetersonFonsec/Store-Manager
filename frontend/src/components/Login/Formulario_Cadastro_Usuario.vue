@@ -121,7 +121,7 @@ export default {
                 
                 const { token } = result.data.novoUsuario
 
-                this.$store.commit('login', token)
+                this.$store.commit('login', token )
 
                 this.$route.push({ path: '/Login' })
 

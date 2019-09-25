@@ -1,6 +1,5 @@
 <template>
     <div id="dashboad">
-      <Menu></Menu>
       <v-container grid-list-md >
         <v-layout  wrap>          
           <v-flex xs12 sm6 md6>
@@ -38,13 +37,11 @@
 </template>
 
 <script>
-  import Menu from "@/components/Menu/menu";
   import Grafico from '@/components/Dashboad/Grafico';
 
   export default {
     components : { 
       Grafico,
-      Menu,
     },
     data(){
       return {
@@ -86,7 +83,4 @@
 </script>
 
 <style scoped>
-  #dashboad {
-    z-index: 5;
-  }
 </style>

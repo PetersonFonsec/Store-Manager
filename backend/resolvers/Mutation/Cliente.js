@@ -1,18 +1,13 @@
-const db = require('../../db/knex')
+const clienteController = require('../../controllers/Cliente')
 
 module.exports = {
-    async novoCliente(_, { dados }){
-
-        await db.insert({ ...dados }).into('clientes')
-
-        return { ...dados }
+    novoCliente(_, { dados }){
+        return clienteController.novoCliente(dados)
     },
-    async excluirCliente(_, { filtro }){
-
-        return await db('clientes').wehre({ ...filtro }).delete()
-
+    excluirCliente(_, { filtro }){
+        return clienteController.excluirCliente(filtro)
     },
-    async alterarCliente( _, { filtro, dados }){
-        return await db('clientes').wehre({ ...filtro }).update({ ...dados })
+    alterarCliente( _, { filtro, dados }){
+        return clienteController.alterarCliente(filtro, dados)
     }
 }

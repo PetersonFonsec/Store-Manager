@@ -1,5 +1,5 @@
 <template>
-    <div id="menu" v-if="usuarioLogado">
+    <div id="menu" v-if="usuarioLogado" zindex>
         
         <div id="logo">
             <img  src="@/assets/logo.png" alt="logoTipo">
@@ -10,7 +10,7 @@
             <router-link tag="button" to="/Vendas">Venda</router-link>
             <router-link tag="button" to="/Produtos">Produto</router-link>
             <router-link tag="button" to="/Clientes">Cliente</router-link>
-            <router-link tag="button" @click="sair">Sair</router-link>
+            <button @click="sair">Sair</button>
         </div>
 
     </div>
@@ -30,6 +30,8 @@ export default {
     },
     methods:{
         sair(){
+            
+            this.$router.push({ path: "/Login"});
             this.$store.commit('logout')
         }
     }

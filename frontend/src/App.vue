@@ -1,22 +1,30 @@
 <template>
   <v-app>
 
-    <particleBG height="100%" bg-fixo />
+    <particleBG :height="tamanhoBg" bg-fixo />
 
-    <router-view></router-view>
+    <Menu/>
+
+    <router-view />
 
   </v-app>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import particleBG from '@/components/Menu/backGroundParticle'
+  import Menu from "@/components/Menu/menu";
+  import { mapState } from 'vuex'
 
   export default {
     name: 'App',
-    components: { particleBG },
+    components: { particleBG, Menu },
     computed: {
-      ...mapState(['usuarioEstaLogado'])
+      
+      ...mapState(['usuarioLogado']),
+      
+      tamanhoBg(){
+        return this.usuarioLogado ? '50%' :  '100%'
+      }
     }
   }
 </script>
@@ -27,6 +35,6 @@
     z-index: 0;
   }
   [ zindex ]{
-    z-index: 1;
+    z-index: 5;
   }
 </style>

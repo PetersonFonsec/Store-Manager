@@ -7,7 +7,7 @@ type Cliente {
 }
 
 input ClienteInput {
-    id: Int!
+    id: Int
     nome: String!
     email: String!
     telefone: String

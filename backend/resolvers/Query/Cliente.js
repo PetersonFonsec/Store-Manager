@@ -1,10 +1,10 @@
-const db = require('../../db/knex')
+const clienteController = require('../../controllers/Cliente')
 
 module.exports = {
-    async clientes(){
-        return await db('clientes')
+    clientes(){
+        return clienteController.clientes()
     },
-    async cliente(_, { filtro }){
-        return await db('clientes').where({ ...filtro }).first()
+    cliente(_, { filtro }){
+        return clienteController.cliente(filtro)
     },
 }
