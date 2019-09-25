@@ -22,6 +22,14 @@ type UsuarioOutput {
 }
 
 
+type loginOutput {
+    id: Int
+    nome: String!
+    email: String!
+    ativo: Boolean,
+    token: String!
+}
+
 input UsuarioFiltro{
     email: String
     id: Int    

@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div class="container-error" :class="{ 'mostrar' : error.mostrar }" >
+            <alert-error :mensagem="mensagemError" />
+        </div>
+
         <v-card id="Formulario_login">
             <v-layout wrap style="flex-direction: column;">
 
@@ -7,7 +11,7 @@
                     <span class="title-login">Login</span>
                 </v-card-title>
 
-                <v-form v-model="valid">
+                <v-form v-model="valido">
                     <v-flex xs12>
                         <v-text-field
                             label="Email"
@@ -39,22 +43,71 @@
 </template>
 
 <script>
+    import { login } from '@/graphql/Usuario'
     import FormularioCadastro from '@/components/Login/Formulario_Cadastro_Usuario';
     import InputSenha from '@/components/Login/input-senha';
+    import AlertError from '@/components/Login/alert_error';
+
     export default {
-        components: { FormularioCadastro, InputSenha },
+        components: { FormularioCadastro, InputSenha, AlertError },
         data(){
             return{
-                valid: false,
+                valido: false,
                 user: {},
+                error:{
+                    mostrar: false,
+                    mensagem: ''
+                }
+            }
+        },
+        computed:{
+            mensagemError(){
+                return this.error.mensagem
             }
         },
         methods:{
-            logar(){
-                this.$router.push({path: '/Dashboad'});
+            mostrarErro(){
+                this.error.mostrar = true
+
+                setTimeout( ()=> this.error.mostrar = false, 3000 )
+            },
+            async logar(){
+
+                const { senha, email } = this.user
+
+                if(!senha || !email){
+                    
+                    this.mostrarErro()
+
+                    this.error.mensagem = 'Campo email e senha são obrigatórios'
+
+                    return 
+                }
+
+                const result = await this.$api.query({
+                    query: login,
+                    variables: { senha, email }
+                })
+
+                if( result.data.login ){
+                    
+                    const { token } = result.data.login
+                    
+                    this.$store.commit('login', token )
+                    
+                    this.$router.push({path: '/Dashboad'});
+
+                }else{
+
+                    this.mostrarErro()
+
+                    this.error.mensagem = result.errors[0].message
+
+                }
+
             },
             setPassword(senha){
-                this.senha = senha
+                this.user.senha = senha
             }
         }
     }
@@ -68,5 +121,15 @@
     }
     #Formulario_login .title-login {
         font-size: 30px;
+    }
+    .container-error{
+        width: 80%;
+        position: absolute;
+        top: -100px;
+        left: 10%;
+        transition: .4s linear all;
+    }
+    .container-error.mostrar{
+        top: 0px;
     }
 </style>

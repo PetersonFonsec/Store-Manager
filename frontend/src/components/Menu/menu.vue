@@ -1,5 +1,5 @@
 <template>
-    <div id="menu">
+    <div id="menu" v-if="usuarioLogado">
         
         <div id="logo">
             <img  src="@/assets/logo.png" alt="logoTipo">
@@ -10,18 +10,30 @@
             <router-link tag="button" to="/Vendas">Venda</router-link>
             <router-link tag="button" to="/Produtos">Produto</router-link>
             <router-link tag="button" to="/Clientes">Cliente</router-link>
+            <router-link tag="button" @click="sair">Sair</router-link>
         </div>
+
     </div>
 </template>
 
 <script>
-    export default {
-        data(){
-            return{
-                titulo : 'Pet Store Manager',
-            }
+import { mapState } from 'vuex'
+
+export default {
+    data(){
+        return{
+            titulo : 'Pet Store Manager',
+        }
+    },
+    computed: {
+        ...mapState(['usuarioLogado'])
+    },
+    methods:{
+        sair(){
+            this.$store.commit('logout')
         }
     }
+}
 </script>
 
 <style scoped>

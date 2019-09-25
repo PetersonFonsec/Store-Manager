@@ -1,6 +1,6 @@
 type Query {
     
-    login(email:String, senha:String):UsuarioOutput
+    login(email:String!, senha:String!):loginOutput
 
     usuarios: [UsuarioOutput]
     usuario(filtro:UsuarioFiltro!): UsuarioOutput

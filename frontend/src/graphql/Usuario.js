@@ -6,3 +6,10 @@ export const novoUsuario = graphql`
             id nome email
         }
     }`
+
+export const login = graphql`
+    query login($email:String!, $senha:String!){
+        login(email:$email, senha: $senha){            
+            id nome email token
+        }
+    }`

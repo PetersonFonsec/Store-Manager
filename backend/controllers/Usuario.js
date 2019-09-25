@@ -9,14 +9,14 @@ class Usuario {
     }
 
     createToken(conteudo){
-        const agora = Math.floor(Data.now() / 1000)
-
+        const agora = Math.floor(Date.now() / 1000)
+        
         conteudo.iat = agora
         conteudo.exp = agora + (1 * 24 * 60 * 60)
 
         return {
             ...conteudo,
-            token: jwt.encode(usuario. process.env.AUTH_SECRET)
+            token: jwt.encode(conteudo, process.env.AUTH_SECRET)
         }
     }
     
@@ -35,49 +35,65 @@ class Usuario {
     }
 
     async login(email, senha){
-        const usuario = await db(this._table).where({ email }).first()
+        try{
+            const usuario = await db(this._table).where({ email }).first()
 
-        if(!usuario) throw new Error('Email inválido')
+            if(!usuario) throw new Error('Email inválido')
 
-        const senhaCorreta = bcrypt.compareSync(usuario.senha, senha)
+            const senhaCorreta = bcrypt.compareSync(senha, usuario.senha)
 
-        if(!senhaCorreta) throw new Error('Senha inválida')
-        
-        return this.createToken(usuario)
+            if(!senhaCorreta) throw new Error('Senha inválida')
+            
+            return this.createToken(usuario)
+            
+        }catch(e){
+            throw new Error(e)
+        }
     }
 
     async novoUsuario(dados){
 
-        dados.senha = this.encriptSenha(dados.senha)
+        try{
+            dados.senha = this.encriptSenha(dados.senha)
+            
+            const [ id ] = await db.insert(dados).into(this._table)
+            
+            return db(this._table).where({ id }).first()
 
-        const [ id ] = await db.insert(dados).into(this._table)
-
-        const result = db(this._table).where({ id }).first()
-        
-        return result
+        }catch(e){
+            throw new Error(e)
+        }
 
     }
 
     async excluirUsuario(filtro){
 
-        this.validarFiltros(filtro)
+        try {
 
-        const usuarioExluido = await db(this._table).where(filtro).first()
-        
-        await db(this._table).where(filtro).delete()
+            this.validarFiltros(filtro)
 
-        return usuarioExluido
+            const usuarioExluido = await db(this._table).where(filtro).first()
+            
+            await db(this._table).where(filtro).delete()
+
+            return usuarioExluido
+
+        }catch(e){
+            throw new Error(e)
+        }
     }
 
     async alterarUsuario(filtro, dados){
         
-        this.validarFiltros(filtro)
+        try{
 
-        const usuarioExluido = await db(this._table).where(filtro).first()
+            this.validarFiltros(filtro)
+            
+            return await db(this._table).where(filtro).update(dados)
 
-        await db(this._table).where(filtro).update(dados)
-        
-        return usuarioExluido
+        }catch(e){
+            throw new Error(e)
+        }
     }
 
     async listarUsuarios(){
