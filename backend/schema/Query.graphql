@@ -12,7 +12,7 @@ type Query {
     venda(id:Int!): Venda
 
     clientes: [Cliente]
-    cliente(id:Int!): Cliente
+    cliente(filtro:ClienteFiltro!): Cliente
 
     compras: [Compra]
     compra(id:Int!): Compra

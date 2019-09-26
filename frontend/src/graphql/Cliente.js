@@ -9,5 +9,23 @@ export const novoCliente = graphql`
 
 export const todosClientes = graphql`
     query clientes{
-        clientes{ id nome email telefone celular }
+        clientes { id nome email telefone celular }
     }`
+
+export const umCliente = graphql`
+    query cliente( $filtro: ClienteFiltro! ){
+        cliente( filtro: $filtro ){
+            nome email telefone celular
+        }
+    }
+`
+
+export const alterarCliente = graphql`
+    mutation alterarCliente(
+        $filtro:ClienteFiltro 
+        $dados: ClienteInput
+     ){
+        alterarCliente( filtro: $filtro dados: $dados  )
+        { id nome email telefone celular }
+    }
+`

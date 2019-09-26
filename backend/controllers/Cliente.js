@@ -22,12 +22,12 @@ class Cliente {
         return await db(this._table)
     }
 
-    async cliente(_, { filtro }){
+    async cliente( filtro ){
         
         try{
 
             if( this.validarFiltro(filtro) ) throw new Error('Email ou Id inválidos')
-            
+
             return await db(this._table).where(filtro).first()
 
         }catch(error){

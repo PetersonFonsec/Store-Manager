@@ -1,5 +1,5 @@
 type Cliente {
-    id: Int!
+    id: Int
     nome: String!
     email: String!
     telefone: String
@@ -15,6 +15,6 @@ input ClienteInput {
 }
 
 input ClienteFiltro{    
-    id: Int!
-    email: String!
+    id: Int
+    email: String
 }

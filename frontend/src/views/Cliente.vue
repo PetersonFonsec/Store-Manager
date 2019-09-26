@@ -1,6 +1,6 @@
 <template>
     <div id="Clientes">
-        <Lista :clientes="clientes"/>
+        <Lista @reload="buscarClientes" :clientes="clientes"/>
     </div>
 </template>
 
@@ -10,24 +10,25 @@ import { todosClientes } from '@/graphql/Cliente'
 
 export default {
     components: { Lista },
+    name: 'Clientes',
     data(){
-        return{
-            clientes: []
+        return {
+            clientes: [],
         }
     },
     methods:{
         async buscarClientes(){
 
             const result = await this.$api.query({ query: todosClientes })
-
+ 
             const { clientes } = result.data
-
+            
             if( clientes ) this.clientes =  clientes
             
         }
     },
-    mounted(){
-        this.buscarClientes()
+    async mounted(){
+        await this.buscarClientes()
     }
 }
 </script>

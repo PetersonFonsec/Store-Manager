@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    usuarioLogado: false
+    usuarioLogado: true,
   },
   mutations: {    
     login(state, token){
@@ -20,7 +20,7 @@ export default new Vuex.Store({
       localStorage.removeItem( 'token' )
 
       state.usuarioLogado = false
-    }
+    },
   },
   actions: {}
 })
