@@ -6,3 +6,8 @@ export const novoCliente = graphql`
             id nome email
         }
     }`
+
+export const todosClientes = graphql`
+    query clientes{
+        clientes{ id nome email telefone celular }
+    }`

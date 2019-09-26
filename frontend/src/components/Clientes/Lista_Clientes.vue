@@ -15,19 +15,23 @@
         <v-data-table :headers="headers" :items="clientes" :search="search">
 
             <template v-slot:items="props">
-                <td class="text-xs-left" width="10%">{{ props.item.codigo }}</td>
+
+                <td class="text-xs-left" width="10%">{{ props.item.id }}</td>
                 <td class="text-xs-left" width="20%">{{ props.item.nome }}</td>
-                <td class="text-xs-left" width="20%">{{ props.item.preco_venda }}</td>
-                <td class="text-xs-left" width="20%">{{ props.item.preco_compra }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.email }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.telefone }}</td>
+                <td class="text-xs-left" width="20%">{{ props.item.celular }}</td>
+
                 <td class="text-xs-center" width="25%">
-                    <v-btn color="error">
+                    <v-btn color="error" @click="removerCliente(props.item.id)">
                         <v-icon>delete</v-icon>
                     </v-btn>
 
-                    <v-btn color="info">
+                    <v-btn color="info" @click="alterarCliente(props.item.id)">
                         <v-icon>edit</v-icon>
                     </v-btn>
                 </td>
+
             </template>
             
             <template v-slot:no-data>
@@ -56,13 +60,17 @@ export default {
         return{
             search: '',            
             headers: [
-                        { sortable: true, value:'codigo',  text: 'Código'},
-                        { sortable: true, value:'nome',    text:'Nome'},
-                        { sortable: true, value:'preco_venda',   text:'Preço Venda'},
-                        { sortable: true, value:'preco_compra',  text:'Preço Compra'},
-                        { sortable: true, value:'acoes',  text:''},
-                    ],
+                { sortable: true, value:'id',       text: 'Código'   },
+                { sortable: true, value:'nome',     text: 'Nome'     },
+                { sortable: true, value:'email',    text: 'Email'    },
+                { sortable: true, value:'telefone', text: 'Telefone' },
+                { sortable: true, value:'celular',  text: 'Celular'  },
+            ],
         }
+    },
+    methods:{
+        removerCliente(){},
+        alterarCliente(){}
     }
 }
 </script>

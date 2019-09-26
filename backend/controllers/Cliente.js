@@ -72,4 +72,4 @@ class Cliente {
     }
 }
 
-return new Cliente()
+module.exports = new Cliente()
