@@ -1,34 +1,34 @@
 const db = require('../db/knex')
 
-class Cliente {
+class Client {
 
     constructor(){
         this._table = 'clientes'
     }
 
-    validarDados(dados){
-        const { name, email } = dados
+    validData(data){
+        const { name, email } = data
 
         return name && email
     }
 
-    validarFiltro(filtro){
-        const { id, email } = filtro
+    validaFilter(filter){
+        const { id, email } = filter
 
         return id && email
     }
 
-    async clientes(){
+    async clients(){
         return await db(this._table)
     }
 
-    async cliente( filtro ){
+    async client( filter ){
         
         try{
 
-            if( this.validarFiltro(filtro) ) throw new Error('Email ou Id inválidos')
+            if( this.validaFilter(filter) ) throw new Error('Email ou Id inválidos')
 
-            return await db(this._table).where(filtro).first()
+            return await db(this._table).where(filter).first()
 
         }catch(error){
             throw new Error(error)
@@ -36,29 +36,29 @@ class Cliente {
 
     }
 
-    async novoCliente( dados ){
+    async newClient( data ){
 
         try {
 
-            if( !this.validarDados(dados) ) throw new Error('Email ou Nome inválidos')
+            if( !this.validData(data) ) throw new Error('Email ou Nome inválidos')
 
-            const jaExistente = await db(this._table).where({ email: dados.email }).first()
+            const exist = await db(this._table).where({ email: data.email }).first()
             
-            if( jaExistente ) throw new Error('Email já cadastrado')
+            if( exist ) throw new Error('Email já cadastrado')
             
-            const cliente = await db.insert(dados).into(this._table)
+            const client = await db.insert(data).into(this._table)
             
-            return db(this._table).where({ id: cliente.id }).first()
+            return db(this._table).where({ id: client.id }).first()
 
         }catch(error){
             throw new Error(error)
         }
     }
 
-    async excluirCliente( filtro ){
+    async deleteClient( filtro ){
         try {
 
-            if( this.validarFiltro(filtro) ) throw new Error('Email ou Id inválidos')
+            if( this.validaFilter(filtro) ) throw new Error('Email ou Id inválidos')
 
             return await db(this._table).wehre(filtro).delete()
 
@@ -67,9 +67,9 @@ class Cliente {
         }
     }
 
-    async alterarCliente(  filtro, dados ){
-        return await db(this._table).wehre(filtro).update(dados)
+    async updateClient(  filtro, data ){
+        return await db(this._table).wehre(filtro).update(data)
     }
 }
 
-module.exports = new Cliente()
+module.exports = new Client()

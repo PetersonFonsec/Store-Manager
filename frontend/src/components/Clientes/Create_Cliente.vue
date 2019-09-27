@@ -8,7 +8,7 @@
         </template>
 
         <Formulario 
-            @cancelarCliente="dialog = true"
+            @cancelarCliente="dialog = false"
             @submitCliente="criarCliente"/>
 
     </v-dialog>
@@ -43,7 +43,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>

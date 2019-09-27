@@ -1,14 +1,14 @@
-const UsuarioController = require('../../controllers/Usuario')
+const User = require('../../controllers/Usuario')
 
 module.exports = {
     login(_, { email, senha }){
         
-        return UsuarioController.login(email, senha)
+        return User.login(email, senha)
     },
     usuarios(){
-        return UsuarioController.listarUsuarios()
+        return User.listUsers()
     },
     usuario( _, { filtro } ){
-        return UsuarioController.buscarUsuario(filtro)
+        return User.getUser(filtro)
     },
 }

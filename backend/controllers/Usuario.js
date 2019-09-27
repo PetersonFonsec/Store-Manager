@@ -2,61 +2,61 @@ const db = require('../db/knex')
 const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jwt-simple')
 
-class Usuario {
+class User {
 
     constructor(){
         this._table = 'usuario'
     }
 
-    createToken(conteudo){
+    createToken(content){
         const agora = Math.floor(Date.now() / 1000)
         
-        conteudo.iat = agora
-        conteudo.exp = agora + (1 * 24 * 60 * 60)
+        content.iat = agora
+        content.exp = agora + (1 * 24 * 60 * 60)
 
         return {
-            ...conteudo,
-            token: jwt.encode(conteudo, process.env.AUTH_SECRET)
+            ...content,
+            token: jwt.encode(content, process.env.AUTH_SECRET)
         }
     }
     
-    encriptSenha(senha){
+    encriptPassword(password){
         const salt = bcrypt.genSaltSync()
 
-        return bcrypt.hashSync(senha,salt)
+        return bcrypt.hashSync(password,salt)
     }
     
-    validarFiltros(dados){
-        const { id, email } = dados
+    validFilter(data){
+        const { id, email } = data
 
         if(!id && !email) throw new Error('novo Erro')
 
         return true
     }
 
-    async login(email, senha){
+    async login(email, password){
         try{
-            const usuario = await db(this._table).where({ email }).first()
+            const user = await db(this._table).where({ email }).first()
 
-            if(!usuario) throw new Error('Email inválido')
+            if(!user) throw new Error('Email inválido')
 
-            const senhaCorreta = bcrypt.compareSync(senha, usuario.senha)
+            const passwordCorreta = bcrypt.compareSync(password, user.senha)
 
-            if(!senhaCorreta) throw new Error('Senha inválida')
+            if(!passwordCorreta) throw new Error('Senha inválida')
             
-            return this.createToken(usuario)
+            return this.createToken(user)
             
         }catch(e){
             throw new Error(e)
         }
     }
 
-    async novoUsuario(dados){
+    async newUser(data){
 
         try{
-            dados.senha = this.encriptSenha(dados.senha)
+            data.senha = this.encriptPassword(data.senha)
             
-            const [ id ] = await db.insert(dados).into(this._table)
+            const [ id ] = await db.insert(data).into(this._table)
             
             return db(this._table).where({ id }).first()
 
@@ -66,47 +66,47 @@ class Usuario {
 
     }
 
-    async excluirUsuario(filtro){
+    async deleteUser(filter){
 
         try {
 
-            this.validarFiltros(filtro)
+            this.validFilter(filter)
 
-            const usuarioExluido = await db(this._table).where(filtro).first()
+            const userDeleted = await db(this._table).where(filter).first()
             
             await db(this._table).where(filtro).delete()
 
-            return usuarioExluido
+            return userDeleted
 
         }catch(e){
             throw new Error(e)
         }
     }
 
-    async alterarUsuario(filtro, dados){
+    async updateUser(filter, data){
         
         try{
 
-            this.validarFiltros(filtro)
+            this.validFilter(filter)
             
-            return await db(this._table).where(filtro).update(dados)
+            return await db(this._table).where(filter).update(data)
 
         }catch(e){
             throw new Error(e)
         }
     }
 
-    async listarUsuarios(){
+    async listUsers(){
         return db(this._table)
     }
 
-    async buscarUsuario(filtro){
+    async getUser(filter){
 
-        this.validarFiltros(filtro)
+        this.validFilter(filter)
 
-        return await db(this._table).where(filtro).first()
+        return await db(this._table).where(filter).first()
        
     }
 }
 
-module.exports = new Usuario()
+module.exports = new User()

@@ -1,10 +1,10 @@
-const clienteController = require('../../controllers/Cliente')
+const Client = require('../../controllers/Cliente')
 
 module.exports = {
     clientes(){
-        return clienteController.clientes()
+        return Client.clients()
     },
     cliente(_, { filtro }){
-        return clienteController.cliente(filtro)
+        return Client.client(filtro)
     },
 }

@@ -8,16 +8,17 @@
                 </v-btn>
             </template>
 
-            <Formulario 
-                :cliente="cliente"
-                @cancelarCliente="dialog = false"
-                @submitCliente="alterarCliente"/>
+            <p>
+                Tem Certeza que deseja excluir  {{ cliente.nome }} ?
+            </p>
+            <v-button color="error"> Tenho Certeza </v-button>
+            <v-button color="Primari"> Cancelar </v-button>
         </v-dialog>
     </div>
 </template>
 
 <script>
-import { novoCliente, umCliente } from '@/graphql/Cliente'
+import { novoCliente } from '@/graphql/Cliente'
 import Formulario from './Formulario'
 
 export default {
@@ -30,10 +31,8 @@ export default {
         }
     },
     methods:{
-        async alterarCliente(){
+        async excluirClient(){
             
-            if( this.validCampos() ) return null
-
             const result = await this.$api.mutate({
                 mutation: novoCliente,
                 variables: {
@@ -45,25 +44,6 @@ export default {
 
             this.dialog = false
         },
-
-        async buscarCliente(id){
-
-            const filtro =  { id }
-
-            const result = await this.$api.query({
-                query: umCliente,
-                variables: { filtro }
-            })
-
-            const { cliente } = result.data
-
-            if( cliente ) this.cliente = cliente
-            
-        }
-    },
-    mounted(){
-        if(this.id) this.buscarCliente(this.id)
     }
-
 }
 </script>

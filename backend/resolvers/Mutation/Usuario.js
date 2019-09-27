@@ -1,13 +1,13 @@
-const UsuarioController = require('../../controllers/Usuario')
+const User = require('../../controllers/Usuario')
 
 module.exports = {
     novoUsuario(_, { dados }){
-        return UsuarioController.novoUsuario(dados)
+        return User.newClient(dados)
     },
     excluirUsuario(_,{ filtro }){
-        return UsuarioController.excluirUsuario(filtro)
+        return User.deleteClient(filtro)
     },
     alterarUsuario( _, { filtro, dados }){
-        return UsuarioController.alterarUsuario(filtro, dados)
+        return User.updateClient(filtro, dados)
     }
 }

@@ -1,13 +1,13 @@
-const clienteController = require('../../controllers/Cliente')
+const Client = require('../../controllers/Cliente')
 
 module.exports = {
     novoCliente(_, { dados }){
-        return clienteController.novoCliente(dados)
+        return Client.newClient(dados)
     },
     excluirCliente(_, { filtro }){
-        return clienteController.excluirCliente(filtro)
+        return Client.deleteClient(filtro)
     },
     alterarCliente( _, { filtro, dados }){
-        return clienteController.alterarCliente(filtro, dados)
+        return Client.updateClient(filtro, dados)
     }
 }
