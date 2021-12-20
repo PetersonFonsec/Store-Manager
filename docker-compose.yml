@@ -18,7 +18,7 @@ services:
     networks:
       - backend
     volumes:
-      - "./backend:/app"
+      - "./Store-Manager-Back:/app"
       - "/app/node_modules"
 networks:
   backend:
