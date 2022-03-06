@@ -1,0 +1,6 @@
+[submodule "Store-Manager-Back"]
+	path = Store-Manager-Back
+	url = git@github.com:PetersonFonsec/Store-Manager-Back.git
+[submodule "Store-Manager-Front"]
+	path = Store-Manager-Front
+	url = git@github.com:PetersonFonsec/Store-Manager-Front.git
