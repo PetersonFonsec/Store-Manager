@@ -20,6 +20,17 @@ services:
     volumes:
       - "./Store-Manager-Back:/app"
       - "/app/node_modules"
+  frontend:
+    depends_on:
+      - backend
+    build: ./Store-Manager-Front/
+    ports: ["4200:4200"]
+    restart: "always"
+    networks:
+      - backend
+    volumes:
+      - "./Store-Manager-Front:/app"
+      - "/app/node_modules"
 networks:
   backend:
     driver: bridge
