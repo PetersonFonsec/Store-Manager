@@ -24,12 +24,12 @@ formulários até a construção do back-end completo com autenticação JWT, en
 
 Primeiro baixe esse repositório e seus submodulos, para isso pode usar o comando.
 ```
-git pu
+git clone git@github.com:PetersonFonsec/Store-Manager.git --recurse-submodules
 ```
 
 Agora na raiz do projeto rode o comando para subir os containers
 ```
-docker compo up
+docker compose up
 ```
 
 ## Uso
